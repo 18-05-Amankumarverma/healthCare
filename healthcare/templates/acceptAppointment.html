@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0px;
+            padding:0px;
+            box-sizing:border-box;
+        }
+        body{
+            height:100%;
+            width:100%;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        table {
+            padding: 10px;
+        }
+
+        table tr {
+            padding: 10px 10px;
+        }
+
+        table tr td {
+            padding: 0px 10px;
+
+        }
+
+        table tr td input {
+            width: 100%;
+            height: 35px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+
+        }
+
+        table tr td label {
+            width: 100%;
+            padding: 4px 0px;
+            font-weight: 500;
+
+        }
+
+        table tr td select {
+            width: 100%;
+            height: 35px;
+            margin-bottom:10px;
+        }
+
+        table tr td textarea {
+            width: 100%;
+            height: 100px;
+            resize: none;
+            padding-left: 10px;
+        }
+
+        .submitBtn {
+            width: 100%;
+            padding: 30px 0px;
+            position: relative;
+
+
+        }
+
+        .submitBtn input {
+            height: 40px;
+            border-radius: 30px;
+            background-color: #181818;
+            color: #fff;
+            font-weight: 500;
+            padding: 5px 30px;
+            border: none;
+            width: 23%;
+            font-size: 14px;
+        }
+
+        .submitBtn img {
+            position: absolute;
+            height: 48px;
+            width: 48px;
+            border-radius: 100%;
+            left: 98px;
+            top: 27px;
+            transition:all .8s;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="appointmentFormContainer" style="display:flex;justify-content:center;align-items:center;">
+                    <form method="post" action="{% url 'acceptAppointmentMail'%}">
+                       {% csrf_token %}
+                        <div>
+                            <h1>Accept Appointment</h1>
+                            <p></p>
+                        </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div id="message" class="alert alert-{{message.level_tag}}" role="alert">
+                                    <span>{{message}}</span>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <div>
+                            <table>
+                                <tr>
+                                    <td colspan="2">
+                                        <label for="patientName">Patient Name</label>
+                                        <input type="text" name="patientName" placeholder="Ravi Sharma" value="{{appointment.patientName}}">
+                                    </td>
+                                    <td></td> 
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="appointmentDateTime">Appointment Date-Time</label>
+                                        <input type="text" name="appointmentDateTime" value="{{appointment.appointmentDate}}  {{appointment.appointmentTime}}">
+                                    </td>
+                                    <td>
+                                        <label for="appointmentStatus">Appointment Status</label>
+                                        <select name="appointmentStatus">
+                                            <option value="{{appointment.appointementStatus}}">False</option>
+                                            <option value="True">True</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="patientEmail">Patient Email Address</label>
+                                        <input type="email" name="patientEmail" placeholder="johndoe@gmail.com" value="{{appointment.patientEmail}}">
+                                    </td>
+                                    <td>
+                                        <label for="patientPhoneNo">Patient Phone Number</label>
+                                        <input type="number" name="patientPhoneNo" placeholder="1203288273" value="{{appointment.patientPhoneNo}}">
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>
+                                        <label for="appointmentGrantDateTime">Appointment Grant Date-Time</label>
+                                        <input type="date" name="appointmentGrantDateTime">
+                                    </td>
+                                    <td>
+                                        <label for="treatmentFor">Treatment For</label>
+                                        <input type="text" name="treatmentFor" value="{{appointment.appointmentFor}}">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="2">
+                                        <label for="messageFromDoctor">Your message</label>
+                                        <textarea name="messageFromDoctor" placeholder="Type your message"></textarea>
+                                    </td>
+                                    <td><input type="text" name="appointmentId" value="{{appointment.appointmentId}}" style="display:none;"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <div class="submitBtn">
+                                            <input type="submit" value="Accept" id="submitBtn">
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

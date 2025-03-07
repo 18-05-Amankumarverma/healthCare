@@ -1,0 +1,394 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+:root {
+    --primary-bg-color: #8dc3bc;
+    --secondary-bg-color: #0e0e0e;
+    --text-color: #bbcad8;
+    --btn-bg-color: #0e0e0e;
+    --btn-text-color: #8dc3bc
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    padding: 10px !important;
+    background-color: var(--text-color);
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.leftSideBarContainer {
+    /* background-color: var(--secondary-bg-color); */
+    border-radius: 10px;
+    height: 98vh;
+
+
+    /* glassmorphism */
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+}
+
+.leftSideBar {
+    padding: 10px 0px;
+
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.logo {}
+
+.comName {
+    font-size: 25px;
+    font-weight: 800;
+    /* color: var(--text-color); */
+    color: #1b1b1b;
+}
+
+nav {
+    padding: 20px 10px;
+}
+
+nav h4 {
+    font-weight: bold;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    padding: 20px 0px;
+}
+
+nav ul img {}
+
+nav ul li a {
+    font-weight: bold;
+    padding: 0px 18px;
+    text-decoration: none;
+    /* color: var(--text-color); */
+    color: #1b1b1b;
+}
+
+nav ul li a:hover {
+    font-weight: bold;
+    padding: 0px 18px;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+nav ul li:hover {
+    background-color: var(--primary-bg-color);
+    border-radius: 10px;
+    padding: 10px 0px;
+}
+
+.leftSideBar {
+    position: relative;
+}
+
+.profileContainer {
+    position: absolute;
+    bottom: -253px;
+    padding: 10px;
+    width:100%;
+
+}
+
+.profileContainer img {
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    position: absolute;
+    top: -23px;
+    left: 88px;
+    z-index: 999;
+
+}
+
+.profileContainer div {
+    /* background-color: var(--primary-bg-color); */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 50px 10px 0px 10px;
+    width: 100%;
+    font-weight: 500;
+
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+
+}
+
+.profileContainer button {
+    background-color: crimson;
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 700;
+    border: none;
+    margin: 10px 0px;
+
+}
+
+
+.middleContainer {
+    background-color: var(--secondary-bg-color);
+    border-radius: 10px;
+    height: 98vh;
+}
+
+.middleBar {
+    padding: 10px 0px;
+
+}
+
+
+
+.rightSideBarContainer {
+    /* background-color: var(--secondary-bg-color); */
+    background-color: #fff;
+    border-radius: 10px;
+    height: 98vh;
+    overflow: hidden;
+    /* glassmorphism */
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.rightSideBar {
+    padding: 10px 10px;
+
+}
+
+
+.listOfDoctors {}
+
+.listOfDoctors ul {
+    list-style-type: none;
+    overflow: scroll;
+    height: 100vh;
+    padding: 10px 0px 30px 0px;
+}
+
+.listOfDoctors ul::-webkit-scrollbar {
+    display: none;
+}
+
+.listOfDoctors ul li {
+    border-radius: 10px;
+    padding: 10px 10px;
+    /* background-color: var(--primary-bg-color); */
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+
+.listOfDoctors ul li .doctor div img {
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+}
+
+.listOfDoctors ul li .doctor button {
+    /* background-color: crimson; */
+    background-color: #2b3bdb;
+    border: none;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px 0px 0px 0px;
+    padding: 10px 0px;
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.listOfDoctors ul li .doctor button a {
+    /* color: var(--text-color); */
+    color: #fff;
+    text-decoration: none;
+}
+
+.listOfDoctors ul li .doctor button a:hover {
+    /* color: var(--text-color); */
+    color: #1b1b1b;
+    text-decoration: none;
+}
+
+.details h5 {
+    font-weight: 800;
+}
+
+.details div .icons {
+    height: 15px !important;
+    width: 15px !important;
+}
+
+.details div span {
+    font-size: 14px;
+    margin: 0px;
+    padding: 0px 10px;
+}
+
+
+
+/* middle part */
+.middleContainer {
+    background-color: #fff;
+    border-radius: 10px;
+    height: 98vh;
+    overflow: hidden;
+    /* glassmorphism */
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.middleBar {
+    padding: 0px 0px;
+}
+
+.boxheading {
+    height: ;
+    padding: 15px 15px;
+    background-color: crimson;
+    display: flex;
+    align-items: center;
+
+}
+
+#aiSelectBox {
+    margin-left: 20px;
+    padding: 5px 20px;
+    text-align: left;
+    border: none;
+    border-radius: 5px;
+    width: ;
+}
+
+.logo img {
+    height: 40px;
+    width: 40px;
+}
+
+.boxBottom {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    padding: 10px 10px;
+
+    background: rgba(255, 255, 255, 0.22);
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+}
+
+#typeingBox {
+    height: 45px;
+    width: 80%;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding-left: 10px;
+
+}
+
+#submitBtn {
+    height: 45px;
+    width: 18%;
+    border: none;
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-weight: 700;
+    float: right;
+    background-color: crimson;
+    color: #fff;
+}
+
+.uploadIcon {
+    margin: 10px 0px;
+}
+
+.chatDisplayBox {
+    padding: 10px 10px;
+    height: 100vh;
+    overflow: scroll;
+
+    border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+}
+
+.chatDisplayBox::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chatDisplayBox::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px gray;
+}
+
+.chatDisplayBox::-webkit-scrollbar-thumb {
+    background-color: hwb(13 1% 22%);
+    border-radius: 10px;
+}
+
+.aiMessage {
+
+    display: flex;
+    justify-content: flex-start
+}
+
+.userMessage {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.aiMessage span,
+.userMessage span {
+
+    margin: 8px 0px;
+    border-radius: 10px;
+    background-color: #fff;
+    text-align: left;
+    padding: 10px 15px;
+}

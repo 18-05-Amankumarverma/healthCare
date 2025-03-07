@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/home.css '%}">
+
+    <title>Healthcare</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 " style="margin:0px;padding:0px;">
+                <div class="leftSideBarContainer">
+                    <div class="leftSideBar">
+                        <div class="navbar">
+                            <span class="logo">
+                                <img src="static/img/aids.png" alt="logo">
+                            </span>
+                            <h1 class="comName">HealthCare</h1>
+                            <span class="notification">
+                                <img src="static/img/bell (1).png" alt="bell">
+                            </span>
+                        </div>
+                        <nav>
+                            <h4>Pages</h4>
+                            <ul>
+                                <li><img src="static/img/dashboard (2).png" alt=""><a href="">Dashboard</a></li>
+                                <li><img src="static/img/schedule (1).png" alt=""><a href="">Appointments</a></li>
+                                <li><img src="static/img/profile-user (1).png" alt=""><a href="">Profile</a></li>
+                                <li><img src="static/img/question.png" alt=""><a href="">Help</a></li>
+                            </ul>
+                        </nav>
+                        <div class="profileContainer">
+                            <img src="static/img/profile_image.jpg" alt="profile_image">
+                            <div>
+                                <h6>Name : {{request.user.username}}</h6>
+                                <h6>Email : {{request.user.email}}</h6>
+                                <span style="display:flex;justify-content:center;align-items:center;">
+                                    <button><a href="{% url 'patientLogOut' %}" style="color:white;">Log
+                                            out</a></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="middleContainer">
+                    <div class="middleBar">
+                        <form class="box" method="post" action="patientPage" id="box" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="boxheading">
+                                <div class="logo">
+                                    <img src="static/img/profile-user (1).png" alt="AIprofile">
+                                </div>
+                                <select name="" id="aiSelectBox">
+                                    <option value="gimini">Gimini</option>
+                                    <option value="chat gpt">Chat gpt</option>
+                                    <option value="bard">Bard</option>
+                                </select>
+                            </div>
+                            <div class="chatDisplayBox">
+                                <div class="chat">
+                                    {% if AIresponse and userQuestions %}
+                                    <div class="userMessage"><span>{{ userQuestions }}</span></div>
+                                    <div class="aiMessage">
+                                        <span>
+                                            <ul style="list-style-type:none;">
+
+                                                {% for message in AIresponse.splitlines %}
+                                                <!-- Split response into lines -->
+                                                {% if message.strip %} <!-- Ignore empty lines -->
+                                                <li>{{ message.splitlines }}</li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </span>
+                                    </div>
+                                    {% else %}
+                                    <div class="aiMessage"><span>Loading...</span></div>
+                                    <div class="userMessage"><span>Loading...</span></div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="boxBottom">
+                                <div>
+                                    <label for="upload">
+                                        <img src="static/img/upload-file.png" alt="uploadIcon" class="uploadIcon ">
+                                    </label>
+                                    <input type="file" name="user_uploadedFile" id="upload" style="display:none;">
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="Type to Search" id="typeingBox" name="user_query" />
+                                    <input type="submit" value="Send" id="submitBtn" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4" style="padding:0px;">
+                <div class="rightSideBarContainer">
+                    <div class="rightSideBar">
+                        <div class="listOfDoctors">
+                            <ul id="doctorList">
+                                {% for doctor in doctorsList %}
+                                <li>
+                                    <div class="doctor">
+                                        <div style="display:flex;">
+                                            <div>
+                                                <img src="static/img/profile_image.jpg" alt="doctor_image">
+                                            </div>
+                                            <div style="padding:0px 20px;font-weight:500;font-size:18px;"
+                                                class="details">
+                                                <h5>{{doctor.doctor_name}}</h5>
+                                                <div style="display:flex;justify-content:space-between;">
+                                                    <div>
+                                                        <img src="static/img/phone-call (1).png" class="icons"
+                                                            alt="phone">
+                                                        <span>+91 {{doctor.phone_no}}</span>
+                                                    </div>
+                                                    <div style="padding-left:15px;">
+                                                        <img src="static/img/clock (1).png" class="icons" alt="time">
+                                                        <span>{{doctor.time}}</span>
+                                                    </div>
+                                                </div>
+                                                <div style="display:flex;">
+                                                    <div>
+                                                        <img src="static/img/doctor.png" class="icons" alt="specialist">
+                                                        <span>{{doctor.specialist}}</span>
+                                                    </div>
+                                                    <div style="padding-left:30px;">
+                                                        <img src="static/img/clock (1).png" class="icons"
+                                                            alt="open_close">
+                                                        <span>{{doctor.status}}</span>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <img src="static/img/location (1).png" class="icons" alt="location"><span >{{doctor.address}}</span>
+                                                    <div id="coordinates">
+                                                        <span>{{doctor.coordinates.lat}}</span>
+                                                        <span>{{doctor.coordinates.lng}}</span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <button class="appointmentBtn"><a
+                                                href="{% url 'patientMap' %}">View Details</a></button>
+                                    </div>
+                                </li>
+                                {% endfor%}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let existingDoctors = JSON.parse(localStorage.getItem("selectedDoctor")) || [];
+
+            const appointmentButtons = document.querySelectorAll(".appointmentBtn");
+
+            appointmentButtons.forEach(button => {
+                button.addEventListener("click", function (event) {
+
+                    let doctorDiv = this.closest(".doctor");
+
+                    let name = doctorDiv.querySelector("h5").innerText;
+                    let phone = doctorDiv.querySelector("div img[alt='phone'] + span").innerText;
+                    let time = doctorDiv.querySelector("div img[alt='time'] + span").innerText;
+                    let address = doctorDiv.querySelector("div img[alt='location'] + span").innerText;
+
+                    // Correctly selecting coordinates inside the current doctorDiv
+                    let coordinatesDiv = doctorDiv.querySelector("#coordinates");
+                    
+                    let lat = coordinatesDiv.querySelector("span:nth-of-type(1)").innerText;
+                    let lng = coordinatesDiv.querySelector("span:nth-of-type(2)").innerText;
+                
+                    console.log("Extracted Coordinates: Lat =", lat, ", Lng =", lng);
+
+                    // Check if the doctor is already stored
+                    let doctorExists = existingDoctors.some(doctor => doctor.phone === phone);
+
+                    if (!doctorExists) {
+                        let doctorData = {
+                            doctorName: name,
+                            phone: phone,
+                            address: address,
+                            time: time,
+                            coordinates: { lat: lat, lng: lng } // Adding coordinates properly
+                        };
+
+                        existingDoctors.push(doctorData);
+                        localStorage.setItem("selectedDoctor", JSON.stringify(existingDoctors));
+
+                        console.log("Doctor added:", doctorData);
+                        window.location.href = "http://127.0.0.1:8000/patientMap"
+                    } else {
+                        console.log("Doctor already selected.");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>

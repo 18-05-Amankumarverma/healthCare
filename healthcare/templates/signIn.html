@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>Patient SignUp</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        .logo h2{
+            padding-left:20px;
+            padding-top:10px;
+        }
+        .leftContainer{
+            height:100vh;
+        }
+        .rightContainer{
+            height:100vh;
+        }
+        .rightContainer img{
+            height:100%;
+            width:100%;
+            padding:10px;
+            border-radius:20px;
+        }
+        form{
+            display:flex;
+            flex-direction:column;
+            width:400px;
+            margin:30px auto;
+        }
+        form label,input{
+            width:100%;
+        }
+        form label{
+            font-weight:500;
+        }
+        form input{
+            padding-left:10px;
+            height:40px;
+            border:none;
+            border:.8px solid rgb(185, 181, 181);
+            border-radius:5px;
+        }
+        .formFooter{
+            margin:10px 0px;
+            text-align:center;
+        }
+        .formFooter span{
+            display:block;
+            padding:20px 0px;
+        }
+        .formFooter input{
+            height:40px;
+            font-weight:500;
+            color:white;
+            background-color:rgb(25, 87, 19);
+            border:none;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6" style="margin:0px;padding:0px;">
+                <div class="leftContainer">
+                    <div class="logo">
+                        <h2>MediCure</h2>
+                    </div>
+                    <form action="patientSignIn" method="post">
+                        {% csrf_token %}
+                        <div style="padding:30px 0px;">
+                            {% if messages %}
+                            {% for message in messages %}
+                            <span class="alert alert-{{message.level_tag}}" role="alert">{{message}}</span>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="formHeader">
+                            <h3>Welcome Back !</h3>
+                            <p style="color:gray;">Our Ai doctor helps you to stay calm and safe </p>
+                        </div>
+                        <div class="formMiddlePart">
+                            <div style="padding:10px 0px;">
+                                <label for="patient_name">Patient Name</label>
+                                <input type="text" name="patient_name" placeholder="John@gmail.com">
+                            </div>
+                            <div style="padding:10px 0px;">
+                                <label for="patient_password">Password</label>
+                                <input type="password" name="patient_password" placeholder="**********">
+                            </div>
+                        </div>
+                        <div class="formFooter">
+                            <input type="submit" value="Log In">
+                            <span>Don't have an Account| <a href="{% url 'patientSignUp' %}">Register</a></span>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6" style="margin:0px;padding:0px;">
+                <div class="rightContainer imageContainer">
+                    <img src="https://images.pexels.com/photos/12210001/pexels-photo-12210001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
