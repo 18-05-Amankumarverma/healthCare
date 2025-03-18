@@ -1,14 +1,2 @@
-
-### Django ###
-## Database
-db.sqlite3
-
-# Distribution / packaging
-.Python
-
-
-# Environments
-.env
-.venv
-env/
-venv/
+venv 
+.git
