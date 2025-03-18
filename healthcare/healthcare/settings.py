@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-33d9-bnv&btq^uk(4agz$zko$exf0#9&phxr&__kvp7y)+yn24'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 
@@ -133,14 +133,6 @@ GIMINI_APIKEY = 'AIzaSyCcUbiSv2Eem2j43PYdQBt5VejTtVduEZw'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# # Emails settings
-# EMAIL_HOST = 'localhost'
-# EMAIL_PORT = '8001'
-# EMAIL_HOST_PASSWORD = ''
-# EMAIL_USE_TLS = False
-# # EMAIL_USE_SSL = False
-
 
 # # Emails settings
 EMAIL_HOST = 'smtp.gmail.com'

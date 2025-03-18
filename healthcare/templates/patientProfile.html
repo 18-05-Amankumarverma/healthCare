@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'styles/home.css '%}">
+    <title>Patient Profile</title>
+    <style>
+        #profileDetailsForm{
+            color:#fff;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            width:400px;
+            margin-top:40px;
+        }
+       
+        #profileDetailsForm input{
+            height:40px;
+            border:.8px solid gray;
+            padding:0px 10px;
+            border-radius:8px ;
+            background-color:#232B41;
+            color:white;
+        }
+        
+        #profileDetailsForm button{
+            border:none;
+            border-radius:8px;
+            margin:30px 0px;
+            height:40px;
+            background-color:#3E81FF;
+        }
+        #profileDetailsForm button a{
+            color:white;
+        }
+        .profileImage{
+            display:flex;
+            justify-content:center;
+            align-items: center;
+        }
+        .profileImage img{
+            height:200px;
+            width:200px;
+            border-radius:100%;
+            background-color:rgb(194, 193, 193);
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 " style="margin:0px;padding:0px;">
+                <div class="leftSideBarContainer">
+                    <div class="leftSideBar">
+                        <div class="navbar">
+                            <span class="logo">
+                                <img src="static/img/aids.png" alt="logo">
+                            </span>
+                            <h1 class="comName">HealthCare</h1>
+                            <span class="notification">
+                                <img src="static/img/bell (1).png" alt="bell">
+                            </span>
+                        </div>
+                        <nav>
+                            <h4>Pages</h4>
+                            <ul>
+                                <li><img src="static/img/dashboard (2).png" alt=""><a href="{% url 'patientPage' %}">Dashboard</a></li>
+                                <li><img src="static/img/schedule (1).png" alt=""><a href="{% url 'patientAppointmentList'%}">Appointments</a></li>
+                                <li><img src="static/img/profile-user (1).png" alt=""><a href="{% url 'patientProfile' %}">Profile</a></li>
+                                <li><img src="static/img/question.png" alt=""><a href="{% url 'patientHelpPage'%}">Help</a></li>
+                            </ul>
+                        </nav>
+                        <div class="profileContainer">
+                            <img src="https://www.pngkit.com/png/full/990-9905045_vector-art-design-men-fashion-vector-art-illustration.png" alt="">
+                            <div>
+                                <h6>Name : {{request.user.username}}</h6>
+                                <h6>Email : {{request.user.email}}</h6>
+                                <span style="display:flex;justify-content:center;align-items:center;">
+                                    <button><a href="{% url 'patientLogOut' %}">Log
+                                            out</a></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10" style="display:flex;justify-content:center;align-items:center;">
+                <div>
+                    <div class="profileImage">
+                        <img src="https://www.pngkit.com/png/full/990-9905045_vector-art-design-men-fashion-vector-art-illustration.png" alt="">
+                    </div>
+                    <div class="profileDeatils">
+                        <form id="profileDetailsForm">
+                            <label for="Name">Name</label>
+                            <input type="text" value="{{request.user.username}}" disabled>
+                            <br>
+                            <label for="Name">Email</label>
+                            <input type="text" value="{{request.user.email}}" disabled>
+                            <br>
+                    
+                            <button><a href="{% url 'patientLogOut' %}">LogOut</a></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+</body>
+</html

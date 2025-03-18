@@ -115,6 +115,7 @@ doctorsList = [
     }
 ]
 
+# view for handling AI request
 
 # Helper function to find file in the folder
 def find_file_in_folder(folder_path, file_name):
@@ -142,6 +143,7 @@ model = genai.GenerativeModel(
     model_name="gemini-2.0-flash",
     generation_config=generation_config,
 )
+
 
 # View to handle patient data and file upload
 @login_required(login_url='patientSignIn')
@@ -172,30 +174,30 @@ def patientPage(request):
             print(f"File found: {file_path}")
 
             try:
-    # Generate content from the AI model
+                # Generate content from the AI model
                 response = model.generate_content([
                         "Analyze the image and suggest the medical treatment and medicine for the detected disease.",
-                        "Provide a structured response in the form of bullet points or a JSON array with the following fields:",
+                        "Provide a structured response in the form of JSON  with the following fields:",
                         "- Disease Name",
                         "- Symptoms",
                         "- Recommended Treatment",
                         "- Medicines (if applicable)",
                         "- Any precautions",
-                        "Ensure the response is formatted properly as a list, not a paragraph.",
+                        "Ensure the response is formatted properly json , not a paragraph.",
                         file_path,  # Directly passing file path
                     ])
 
                     # Process the response
                 data = response.text.strip()  # Remove leading/trailing whitespace
 
+                   # In your view function
                 try:
-                     # Try parsing the response as JSON
-                     parsed_data = json.loads(data)
-                     formatted_response = json.dumps(parsed_data, indent=4)  # Make it readable
+                        # Try parsing the response as JSON
+                        parsed_data = json.loads(data)
+                        formatted_response = json.dumps(parsed_data, indent=4)  # Make it readable
                 except json.JSONDecodeError:
-                    # Fallback: Convert text into list format manually
-                    formatted_response = data.replace("*","\n")  # Convert newline to bullet points
-
+                        # Fallback: Convert text into list format manually
+                        formatted_response = data.replace("*", "\n")  # Convert newline to bullet points
                 print("\n--- Suggested Treatment ---\n", formatted_response)
 
                 request.session['doctorsList'] = doctorsList
@@ -209,6 +211,8 @@ def patientPage(request):
             print("File not found.")
         
     return render(request,'patient.html')
+
+
 
 
 
@@ -352,3 +356,18 @@ def acceptAppointmentMail(request):
 def acceptAppointment(request,id):
     appointment = get_object_or_404(Appointment,pk=id)
     return render(request,'acceptAppointment.html',{'appointment':appointment})
+
+
+
+def patientProfile(request):
+    return render(request,'patientProfile.html')
+
+
+
+
+def patientHelpPage(request):
+    return render(request,'patientHelpPage.html')
+
+
+def patientAppointmentList(request):
+    return render(request,'patientAppointmentList.html')
