@@ -63,16 +63,11 @@ function addDoctorMarkers() {
         L.marker([doctor.lat, doctor.lng], { icon: doctorIcon })
             .addTo(map)
             .bindPopup(`<b>${doctor.name}</b><br>Phone: ${doctor.phone}<br>Time: ${doctor.time}<br>
-                        <button onclick="routeToDoctor(${doctor.lat}, ${doctor.lng})" id="buttonOnmap">Get Route</button>`);
+                        <button onclick="routeToDoctor(${doctor.lat}, ${doctor.lng})" >Get Route</button>`);
     });
 }
 
-// button style which is present over map
 
-buttonOnmap = document.getElementById('buttonOnmap')
-buttonOnmap.style.border = 'none'
-buttonOnmap.style.backgroundColor = 'crimson'
-buttonOnmap.style.padding = '5px 10px'
 
 
 // User's location marker
